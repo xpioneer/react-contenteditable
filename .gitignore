@@ -1,0 +1,12 @@
+#editor
+.vscode
+.idea
+
+# dependencies
+node_modules
+dist
+
+# mac
+.DS_Store
+
+*.log*
