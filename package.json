@@ -8,7 +8,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server",
-    "build": "tsc & cp ./src/style.less ./lib"
+    "build": "tsc && npm run copy",
+    "copy": "cp ./src/{style.less,types.d.ts} ./lib"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -32,7 +33,7 @@
     "webpack-cli": "3",
     "webpack-dev-server": "^3.11.2"
   },
-  "types": "src/index.d.ts",
+  "types": "lib/types.d.ts",
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
