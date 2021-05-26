@@ -5,6 +5,7 @@
 # dependencies
 node_modules
 dist
+lib
 
 # mac
 .DS_Store

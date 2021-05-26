@@ -1,4 +1,4 @@
-import React, { useEffect, createRef, useRef, forwardRef } from 'react'
+import React, { createElement, useEffect, createRef, useRef, forwardRef } from 'react'
 import './style.less'
 
 
@@ -69,8 +69,49 @@ export const ContentEditable: React.FC<IProps> = forwardRef((props, ref) => {
   const curNodeRef = useRef<Node>()
   const enteredRef = useRef(false)
   const codeRef = useRef<string>()
+  const compositionLock = useRef(false)
+
+  // other typewriting event
+  const onCompositionStart = () => {
+    compositionLock.current = true
+  }
+  const onCompositionEnd = () => {
+    compositionLock.current = false
+    onAnchorTextChange()
+  }
 
   const onInput = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if(compositionLock.current) {
+      return;
+    }
+    onAnchorTextChange()
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const { code } = e
+    if(code === 'Enter') {
+      e.preventDefault()
+      return
+    }
+
+    codeRef.current = code
+
+    const $ref = editableRef.current!,
+      nodes = $ref.childNodes,
+      len = nodes.length
+
+    const selection = document.getSelection()!,
+      offset = selection.anchorOffset,
+      currentNode = nodes[offset]
+
+    if(offset < len && code === 'ArrowRight') {
+      e.preventDefault()
+      const range = selection.getRangeAt(0)
+      range.setStartAfter(currentNode)
+    }
+  }
+
+  const onAnchorTextChange = () => {
     const selection = document.getSelection()!;
     const currentNode = selection.anchorNode!
 
@@ -97,30 +138,6 @@ export const ContentEditable: React.FC<IProps> = forwardRef((props, ref) => {
       }
     } else if ($ref === currentNode && children.length === 0) {
       onChange && onChange(undefined)
-    }
-  }
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const { code } = e
-    if(code === 'Enter') {
-      e.preventDefault()
-      return
-    }
-
-    codeRef.current = code
-
-    const $ref = editableRef.current!,
-      nodes = $ref.childNodes,
-      len = nodes.length
-
-    const selection = document.getSelection()!,
-      offset = selection.anchorOffset,
-      currentNode = nodes[offset]
-
-    if(offset < len && code === 'ArrowRight') {
-      e.preventDefault()
-      const range = selection.getRangeAt(0)
-      range.setStartAfter(currentNode)
     }
   }
 
@@ -196,5 +213,7 @@ export const ContentEditable: React.FC<IProps> = forwardRef((props, ref) => {
     ref={editableRef}
     onInput={onInput}
     onKeyDown={onKeyDown}
+    onCompositionStart={onCompositionStart}
+    onCompositionEnd={onCompositionEnd}
     onPaste={e => e.preventDefault()}></div>
 })

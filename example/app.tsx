@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ContentEditable } from '../lib/index'
+import { ContentEditable } from '../src/index'
 
 export const App: React.FC = props => {
 
@@ -12,7 +12,7 @@ export const App: React.FC = props => {
     }
   }
 
-  
+
   return <div>
     <ContentEditable keyWords={keyWords} onKeyWord={onKeyWord}/>
   </div>

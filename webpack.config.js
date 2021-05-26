@@ -26,6 +26,10 @@ module.exports = {
     // 用于查找模块的目录
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
+  // externals: {
+  //   'react': 'react',
+  //   'react-dom': 'react-dom'
+  // },
   devServer: {
     port: 3005,
   },
