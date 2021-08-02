@@ -1,14 +1,19 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
+const _PROD_ = process.env.NODE_ENV === 'production'
+console.log('_PROD_', _PROD_, process.env.NODE_ENV)
 
 module.exports = {
-  mode: 'development',
-  entry: './example/index.tsx',
+  mode: _PROD_ ? 'production' : 'development',
+  // devtool: '',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js',
-    // libraryTarget: 'umd',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -18,7 +23,11 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          _PROD_ ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'less-loader'
+        ],
       },
     ],
   },
@@ -26,15 +35,22 @@ module.exports = {
     // 用于查找模块的目录
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  // externals: {
-  //   'react': 'react',
-  //   'react-dom': 'react-dom'
-  // },
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom'
+  },
   devServer: {
     port: 3005,
   },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
   plugins: [
-    new HtmlWebpackPlugin({
+    _PROD_ ? new MiniCssExtractPlugin({
+      filename: "./index.css",
+    }) : new HtmlWebpackPlugin({
       template: path.join(__dirname, './example/index.html'),
       filename: './index.html',
     })
