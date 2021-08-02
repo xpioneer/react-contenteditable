@@ -1,56 +1,9 @@
 import React, { createElement, useEffect, createRef, useRef, forwardRef } from 'react'
 import './style.less'
+import { ReactContenteditableProps } from './types'
 
 
-interface IProps {
-  /**
-   * default: true
-   */
-  editable?: boolean
-
-  /**
-   * placeholder
-   */
-  placeholder?: string
-
-  /**
-   * style
-   */
-  style?: React.CSSProperties
-
-  /**
-   * default: 'editable-area'
-   */
-  className?: string
-
-  /**
-   * delimiter, default: #
-   */
-  delimiter?: string
-
-  /**
-   * value
-   */
-  value?: string
-
-  /**
-   * default: ''
-   */
-  keyWords?: string[] | string
-
-  /**
-   * onChange
-   */
-  onChange?: (value?: string) => void
-
-  /**
-   * onKeyWord
-   */
-  onKeyWord?: () => void
-}
-
-
-export const ContentEditable: React.FC<IProps> = forwardRef((props, ref) => {
+export const ContentEditable: React.FC<ReactContenteditableProps> = forwardRef((props, ref) => {
 
   const {
     placeholder,

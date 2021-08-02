@@ -1,6 +1,6 @@
 {
   "name": "react-editable-tag",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "A ContentEditable Component with React",
   "main": "dist/index.js",
   "author": "xpioneer",
@@ -18,6 +18,13 @@
   "bugs": {
     "url": "https://github.com/xpioneer/react-contenteditable/issues"
   },
+  "keywords": [
+    "react",
+    "typescript",
+    "contenteditable",
+    "hooks",
+    "tag"
+  ],
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -43,8 +50,10 @@
     "webpack-dev-server": "^3.11.2"
   },
   "types": "dist/types.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=16.8.0"
   }
 }
