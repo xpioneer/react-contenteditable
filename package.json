@@ -1,5 +1,5 @@
 {
-  "name": "react-text-editable",
+  "name": "react-editable-tag",
   "version": "1.0.0",
   "description": "A ContentEditable Component with React",
   "main": "dist/index.js",

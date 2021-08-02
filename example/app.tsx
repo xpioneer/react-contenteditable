@@ -14,6 +14,8 @@ export const App: React.FC = props => {
 
 
   return <div>
-    <ContentEditable keyWords={keyWords} onKeyWord={onKeyWord}/>
+    <ContentEditable
+      keyWords={keyWords}
+      onKeyWord={onKeyWord}/>
   </div>
 }
