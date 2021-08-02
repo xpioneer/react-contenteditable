@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const _PROD_ = process.env.NODE_ENV === 'production'
-console.log('_PROD_', _PROD_, process.env.NODE_ENV)
 
 module.exports = {
   mode: _PROD_ ? 'production' : 'development',

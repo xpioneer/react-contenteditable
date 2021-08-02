@@ -1,6 +1,6 @@
 {
   "name": "react-editable-tag",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A ContentEditable Component with React",
   "main": "dist/index.js",
   "author": "xpioneer",
@@ -10,6 +10,13 @@
     "dev": "webpack-dev-server",
     "build": "NODE_ENV=production webpack && npm run copy",
     "copy": "cp ./src/{style.less,types.d.ts} ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:xpioneer/react-contenteditable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xpioneer/react-contenteditable/issues"
   },
   "dependencies": {
     "react": "^17.0.2",
