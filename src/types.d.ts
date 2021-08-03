@@ -1,55 +1,54 @@
 import * as React from 'react'
 
-// declare module 'react-editable-tag' {
+export interface ReactContenteditableProps {
+  /**
+   * default: true
+   */
+  editable?: boolean
 
-  export interface ReactContenteditableProps {
-    /**
-     * default: true
-     */
-    editable?: boolean
+  /**
+   * placeholder
+   */
+  placeholder?: string
 
-    /**
-     * placeholder
-     */
-    placeholder?: string
+  /**
+   * style
+   */
+  style?: React.CSSProperties
 
-    /**
-     * style
-     */
-    style?: React.CSSProperties
+  /**
+   * default: 'editable-area'
+   */
+  className?: string
 
-    /**
-     * default: 'editable-area'
-     */
-    className?: string
+  /**
+   * delimiter, default: #
+   */
+  delimiter?: string
 
-    /**
-     * delimiter, default: #
-     */
-    delimiter?: string
+  /**
+   * value
+   */
+  value?: string
 
-    /**
-     * value
-     */
-    value?: string
+  /**
+   * default: ''
+   */
+  keyWords?: string[] | string
 
-    /**
-     * default: ''
-     */
-    keyWords?: string[] | string
+  /**
+   * onChange
+   */
+  onChange?: (value?: string) => void
 
-    /**
-     * onChange
-     */
-    onChange?: (value?: string) => void
+  /**
+   * onKeyWord
+   */
+  onKeyWord?: () => void
+}
 
-    /**
-     * onKeyWord
-     */
-    onKeyWord?: () => void
-  }
+export interface ContenteditableComponent extends React.Component<ReactContenteditableProps> { }
 
-  export class ReactContenteditable extends React.Component<ReactContenteditableProps> { }
+declare const ReactContenteditable: ContenteditableComponent
 
-  export default ReactContenteditable
-// }
+export default ReactContenteditable
